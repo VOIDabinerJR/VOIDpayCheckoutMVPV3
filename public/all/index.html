@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>VOIDpay | Just</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/animate/animate.min.css"
+        rel="stylesheet">
+    <link
+        href="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/owlcarousel/assets/owl.carousel.min.css"
+        rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Template Stylesheet -->
+    <link href="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/css/style.css" rel="stylesheet">
+
+    
+
+
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            animation: twinkle 1.5s infinite, move 5s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .imgMain {
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: -50px;
+            left: 400px;
+        }
+        
+/* Media Query para telas menores */
+@media (max-width: 768px) {
+    .imgMain {
+        
+            left: 200px;
+        }
+}
+
+        .imgMain .first {
+            width: 200px;
+            
+            
+            border-radius: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 2; /* Ensures this element is on top */
+            position: relative;
+            margin-right: -200px; /* Adjust this value to control the overlap */
+        }
+
+        .imgMain .second {
+            width: 800px;
+            
+            background-color: lightcoral;
+            border-radius: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            
+            border-radius: 5px;
+            overflow-x: auto;
+        margin-bottom: 0px;
+            max-width: 100%;
+            max-height: 400px;
+            text-align: left;
+        }
+
+        .code-block pre {
+            margin: 0px;
+            margin-bottom: 0px;
+          font-size: 12px;
+            color: white;
+        }
+       
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            
+            <img class="logo" style="width: 6rem; " role="status"
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/img/voidblacklogo.png" alt="">
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0" id="home">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><img class="logo"
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/img/voidblacklogo.png" alt=""></h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="#home" class="nav-item nav-link active">Produtos</a>
+                        <a href="#about" class="nav-item nav-link">Soluções</a>
+                        <a href="#feature" class="nav-item nav-link">Recursos</a>
+                        <a href="#pricing" class="nav-item nav-link">Planos</a>
+                        <a href="#review" class="nav-item nav-link">Desenvolvedores</a>
+                        <a href="#contact" class=" nav-item nav-link">Contact</a>
+                    </div>
+                    <a href="#">Saber Mais&rarr;</a>
+                    <a href="/login" class="btn btn-primary-gradient  py-2 px-4 ms-3 d-none d-lg-block">Inicie Grátis</a>
+ 
+                </div>
+            </nav>
+
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5">
+                        <div class="col-lg-8 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">Plataforma de Processamento de Pagamentos
+                            </h1>
+
+                            <p class="text-white pb-3 animated slideInDown">Integração fácil, segurança garantida, e
+                                suporte excepcional para o seu negócio crescer.</p>
+                            <a href="/login"
+                                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5  me-3 animated slideInLeft">Comece
+                                já</a>
+                            <a href=""
+                                class="btn btn-secondary-gradient py-sm-3 px-4 px-sm-5  animated slideInRight contact-btn">Fale
+                                com nossa equipe </a>
+                        </div>
+                        <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end wow fadeInUp"
+                            data-wow-delay="0.3s">
+                           <div class="imgMain">
+                            <img class="first "
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/c2.png" alt=""> 
+                        
+                        <img class="second"
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/c1.png" alt="">
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!--  partner -->
+
+        <div class="container">
+            <div class="logos">
+                <div>
+                    <p><img src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/p1.png" alt=""></p>
+                </div>
+                <div>
+                    <p><img src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/p2.png" alt=""></p>
+                </div>
+                <div>
+                    <p><img src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/p3.png" alt=""></p>
+                </div>
+                <div>
+                    <p><img src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/p4.png" alt=""></p>
+                </div>
+                <div>
+                    <p><img src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/p5.png" alt=""></p>
+                </div>
+
+            </div>
+            <div class="dark-banner">
+                
+            </div>
+
+        </div>
+        <!--  partner -->
+
+        <!-- About Start -->
+        <div class="container-xxl py-5" id="about">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                        <h1 class="mb-4">Checkout Transparente focado em conversão</h1>
+                        <p class="mb-4">Aceite pagamentos online,
+                            presenciais e de qualquer lugar com uma solução flexível, feita para todos os tipos de
+                            negócios,
+                            de startups em crescimento a grandes multinacionais.</p>
+                        <div class="row g-4 mb-4">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="d-flex">
+                                    <i class="fa fa-cogs fa-2x text-primary-gradient flex-shrink-0 mt-1"></i>
+                                    <div class="ms-3">
+                                        
+                                        <p class="text-primary-gradient mb-0">Alta taxa de Conversão</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                                <div class="d-flex">
+                                    <i class="fa fa-comments fa-2x text-secondary-gradient flex-shrink-0 mt-1"></i>
+                                    <div class="ms-3">
+                                       
+                                        <p class="text-secondary-gradient mb-0">Processamento em tempo real</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/login" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5  mt-3">Criar Conta</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s"
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/c1.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+        <!-- Features Start -->
+        <div class="container-xxl py-5" id="feature">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">Recursos</h5>
+                    <h1 class="mb-5"> Recursos do Nosso Gateway de Pagamentos
+                        Faça parte dessa história de sucesso você também</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+
+                                <i class="fa fa-solid fa-code text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">Integre sem Programar</h5>
+                            <p class="m-0">Conecte-se ao nosso gateway sem precisar escrever uma linha de código,
+                                simplificando o processo de integração.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class=" fa fa-regular fa-lightbulb text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">Fácil Uso</h5>
+                            <p class="m-0">Nossa plataforma é intuitiva e fácil de usar, proporcionando uma experiência
+                                sem complicações para você e seus clientes.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-shield-alt text-white fs-4"></i>
+                                <i class="fa-regular "></i>
+                            </div>
+                            <h5 class="mb-3">Ambiente Seguro</h5>
+                            <p class="m-0">Todas as transações são protegidas com tecnologia de criptografia de ponta,
+                                garantindo a segurança de seus dados e pagamentos.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-layer-group text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">Relatórios Interativos</h5>
+                            <p class="m-0">Acesse relatórios detalhados e análises em tempo real para monitorar suas
+                                transações e tomar decisões informadas.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-regular fa-money-bill text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">Saque Fácil</h5>
+                            <p class="m-0">Realize saques de forma rápida e conveniente, com total transparência e
+                                agilidade.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="feature-item bg-light rounded p-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle mb-4"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa fa-mobile-alt text-white fs-4"></i>
+                            </div>
+                            <h5 class="mb-3">API Disponível para Múltiplas Plataformas</h5>
+                            <p class="m-0">Integre facilmente com Shopify, WooCommerce, WordPress, Magento e outras
+                                plataformas populares.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Features End -->
+
+
+        <!-- Screenshot Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
+                        <h5 class="text-primary-gradient fw-medium">Otimize os custos</h5>
+                        <h1 class="mb-4">Acelere seu crescimento com uma plataforma flexível e confiável</h1>
+                        <p class="mb-4">Use as informações detalhadas do relatório de informações de custos de rede e as
+                            oficinas de otimização de custos para melhorar sua gestão de custos de transação.</p>
+                        <p><i class="fa fa-check text-primary-gradient me-3"></i>Diam dolor diam ipsum et tempor sit</p>
+                        <p><i class="fa fa-check text-primary-gradient me-3"></i>Aliqu diam amet diam et eos labore</p>
+                        <p class="mb-4"><i class="fa fa-check text-primary-gradient me-3"></i>Clita erat ipsum et lorem
+                            et sit</p>
+                        <a href="" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Ler docs</a>
+                    </div>
+                    <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end wow fadeInUp"
+                        data-wow-delay="0.3s">
+                        <div class="imghome">
+                            <img style="width: 200%;" src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/Captura de ecrã 2024-07-23 192425.png"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Screenshot End -->
+
+
+        <!-- Process Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">Como Funciona </h5>
+                    <h1 class="mb-5">Integração em 3 Passos</h1>
+                </div>
+                <div class="row gy-5 gx-4 justify-content-center">
+                    <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                                style="width: 100px; height: 100px;">
+                               <i class="fa fa-address-card fa-3x text-white"></i>
+                            </div>
+                            <h5 class="mt-4 mb-3">Cadastrar</h5>
+                            <p class="mb-0">Crie uma conta e forneça as informações necessárias</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                                style="width: 100px; height: 100px;">
+                                <i class="fa fa-cog fa-3x text-white"></i> 
+                            </div>
+                            <h5 class="mt-4 mb-3">Configurar Botão</h5>
+                            <p class="mb-0">Dentro do painel da plataforma, configure um botão de pagamento</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                                style="width: 100px; height: 100px;">
+                                <i class="fa fa-check fa-3x text-white"></i>
+                            </div>
+                            <h5 class="mt-4 mb-3">Copie e Cole</h5>
+                            <p class="mb-0">Copie esse código e cole no local onde você deseja que o botão de pagamento apareça. </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
+                                style="width: 100px; height: 100px;">
+                                <i class="fa fa-check fa-3x text-white"></i>
+                            </div>
+                            <h5 class="mt-4 mb-3">Deixe o resto Connosco</h5>
+                            <p class="mb-0"> A plataforma gerencia o restante do processo de pagamento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Process Start -->
+        <!-- opcoes Start -->
+        <div class="container-xxl py-5" id="about">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                        <h1 class="mb-4">Checkout Transparente focado em conversão</h1>
+                        <p class="mb-4">Aceite pagamentos online,
+                            presenciais e de qualquer lugar com uma solução flexível, feita para todos os tipos de
+                            negócios,
+                            de startups em crescimento a grandes multinacionais.</p>
+                        <div class="row g-4 mb-4">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="d-flex">
+                                    <i class="fa fa-cogs fa-2x text-primary-gradient flex-shrink-0 mt-1"></i>
+                                    <div class="ms-3">
+                                        
+                                        <p class="text-primary-gradient mb-0">Processamento tempo real</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                                <div class="d-flex">
+                                    <i class="fa fa-comments fa-2x text-secondary-gradient flex-shrink-0 mt-1"></i>
+                                    <div class="ms-3">
+                                       
+                                        <p class="text-secondary-gradient mb-0">Contacto Com Cliente</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Ver documentação</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="nav-bar" class="custom-navbar">
+                            <button id="btn-option1" class="nav-button" onclick="showImage('img-option1')">Cartão 
+                                </button>
+                            <button id="btn-option2" class="nav-button" onclick="showImage('img-option2')">Carteira Movel
+                                </button>
+                            <button id="btn-option3" class="nav-button" onclick="showImage('img-option3')">QRCODE
+                                </button>
+                            <button id="btn-option4" class="nav-button" onclick="showImage('img-option4')">PayPal
+                                </button>
+                        </div>
+                        <div id="image-display" class="custom-image-container">
+                            <img id="img-option1" class="image-item" src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/op2.png"
+                                alt="Imagem 1">
+                            <img id="img-option2" class="image-item" src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/op1.png"
+                                alt="Imagem 2">
+                            <img id="img-option3" class="image-item" src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/op4.png"
+                                alt="Imagem 3">
+                            <img id="img-option4" class="image-item" src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/op3.png"
+                                alt="Imagem 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function showImage(imageId) {
+                document.querySelectorAll('.image-item').forEach(img => img.style.display = 'none');
+                document.getElementById(imageId).style.display = 'block';
+            }
+            // Inicialmente mostrar a primeira imagem
+            showImage('img-option1');
+        </script>
+
+        <!-- opcoes fim -->
+
+        <!-- Download Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <img class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
+                            src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img2/mobileapp.png">
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <h5 class="text-primary-gradient fw-medium">Download</h5>
+                        <h1 class="mb-4">Baixe a app e monitore tudo pelo celular</h1>
+                        <p class="mb-4">Baixe o aplicativo da plataforma de pagamento escolhida (disponível para iOS e Android) para acompanhar e gerenciar suas transações em tempo real. Através do aplicativo, você pode:</p>
+                        <ul style="display: flex; justify-items: left;">
+                            <li> Monitorar pagamentos recebidos.
+                               </li>
+                               <li> Visualizar o histórico de transações.
+                                </li>
+                                <li>Gerenciar disputas e reembolsos.
+                                    </li>
+                                    <li>Receber notificações sobre atividades importantes.</li>
+                        </ul>
+                        <div class="row g-4">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <a href="" class="d-flex bg-primary-gradient rounded py-3 px-4">
+                                    <i class="fab fa-apple fa-3x text-white flex-shrink-0"></i>
+                                    <div class="ms-3">
+                                        <p class="text-white mb-0">Disponível na</p>
+                                        <h5 class="text-white mb-0">App Store</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                                <a href="" class="d-flex bg-secondary-gradient rounded py-3 px-4">
+                                    <i class="fab fa-android fa-3x text-white flex-shrink-0"></i>
+                                    <div class="ms-3">
+                                        <p class="text-white mb-0">Disponível na</p>
+                                        <h5 class="text-white mb-0">Play Store</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Download End -->
+
+
+        <!-- Pricing Start -->
+        <div class="container-xxl py-5" id="pricing">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">Planos</h5>
+                    <h1 class="mb-5">Conheça nossos planos</h1>
+                </div>
+                <div class="tab-class text-center pricing wow fadeInUp" data-wow-delay="0.1s">
+                    <ul
+                        class="nav nav-pills d-inline-flex justify-content-center bg-primary-gradient rounded-pill mb-5">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="pill" href="#tab-1">Mensal</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="pill" href="#tab-2">Anual</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content text-start">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Basic</h4>
+                                            <span>Que de básico, não tem nada</span>
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top"
+                                                    style="font-size: 22px; line-height: 45px;"></small>Grátis<small
+                                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                    Mês</small>
+                                                <h5>+ 2,99% por pedido pago</h5>
+                                            </h1>
+
+                                            <div class="d-flex justify-content-between mb-3"><span>Checkout Transparente
+                                                    de alta Conversão</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                            <div class="d-flex justify-content-between mb-3"><span>15 dias de Histórico
+                                                    de Carrinhos Abandonados</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i></div>
+
+                                            <div class="d-flex justify-content-between mb-2"><span>Pagamentos com uma
+                                                    única integração</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Repasses rápidos e
+                                                    previsíveis para suas contas bancárias</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span> Relatórios em tempo
+                                                    real</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Suporte 24 horas por
+                                                    telefone, e-mail e chat</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Repasses rápidos e
+                                                    previsíveis para suas contas bancárias</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Bibliotecas de
+                                                    cliente e SDKs</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <a href="/register"
+                                                class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Criar
+                                                Conta</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded border">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Starter</h4>
+
+
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top"
+                                                    style="font-size: 22px; line-height: 45px;">MZN</small>749<small
+                                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                    Mês</small>
+                                                <h5>+ 2,29% por pedido pago</h5>
+                                            </h1>
+                                            <div class="d-flex justify-content-between mb-3"><span>TUDO DO BASIC
+                                                    E:</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Receba pagamentos
+                                                    avulsos e recorrentes</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Upsell One Click por
+                                                    SMS</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Gere links
+                                                    diretamente pelo Dashboard, sem programar nada</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between mb-3"><span>Mais opções de
+                                                    Gateway de Pagamento</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Receba pagamentos
+                                                    avulsos e recorrentes</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <a href="/register"
+                                                class="btn btn-secondary-gradient rounded-pill py-2 px-4 mt-4">Criar
+                                                Conta</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Personalizado</h4>
+                                            <span>Crie um pacote individualizado</span>
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top"
+                                                    style="font-size: 22px; line-height: 45px;"></small>Tarifas
+                                                específicas por cliente<small class="align-bottom"
+                                                    style="font-size: 16px; line-height: 40px;">
+                                                </small>
+                                            </h1>
+                                            <div class="d-flex justify-content-between mb-3"><span>Descontos por
+                                                    volume</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Precificação
+                                                    IC+</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between mb-3"><span>Crie, personalize e
+                                                    envie faturas online para receber em menos tempo</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-3"><span>Domínio
+                                                    personalizado</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Descontos ao adquirir
+                                                    vários produtos</span><i
+                                                    class="fa fa-check text-primary-gradient pt-1"></i>
+                                            </div>
+                                            <a href="#contact"
+                                                class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Contacte
+                                                Suporte</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane fade p-0">
+                            <div class="row g-4">
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Basic</h4>
+
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top"
+                                                    style="font-size: 22px; line-height: 45px;"></small>Grátis<small
+                                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                    Anual</small>
+                                            </h1>
+
+                                            <a href="/register"
+                                                class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Criar
+                                                Conta</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded border">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Starter</h4>
+
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top"
+                                                    style="font-size: 22px; line-height: 45px;">MZN</small>8499.00<small
+                                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                    Anual</small>
+                                            </h1>
+
+                                            <a href="/register"
+                                                class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Criar
+                                                Conta</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="bg-light rounded">
+                                        <div class="border-bottom p-4 mb-4">
+                                            <h4 class="text-primary-gradient mb-1">Personalizado</h4>
+
+                                        </div>
+                                        <div class="p-4 pt-0">
+                                            <h1 class="mb-3">
+                                                <small class="align-top" style="font-size: 22px; line-height: 45px;">
+                                                    <span>Crie um pacote individualizado</span>
+                                            </h1>
+
+                                            <a href="#contact"
+                                                class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Contacte
+                                                nos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pricing End -->
+        <!-- Footer Start -->
+        <div class="container bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+
+                    <div class="col-md-6 text-center ">
+                        <h4 class="text-white mb-4">A mais simples documentação</h4>
+                        <h4 class="text-white mb-4"> Foco no iniciantes para acelerar os lançamentos</h4>
+                        <a class="btn btn-link" href="">Amostra de código e exemplos</a>
+                        <a class="btn btn-link" href="">Ambiente de teste</a>
+                        <a class="btn btn-link" href="">Tutoriais em video</a>
+                        <a class="btn btn-link" href="">Suporte 24/7</a>
+
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div id="main-container" class="custom-container">
+                           
+                            <div id="image-display" class="custom-image-container">
+                                <div class="code-block">
+                                    <pre><code>        &lt;body&gt;
+        &lt;div id="void-button-container" name=""&gt;&lt;/div&gt;
+        &lt;p id="result-message"&gt;&lt;/p&gt;
+        &lt;!-- Replace the "test" client-id value with your client-id --&gt;
+        &lt;script src="https://voidabinerjr.github.io/sdk/s2.js"&gt;&lt;/script&gt;
+        &lt;script src="app.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;         </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Footer End -->
+
+        <!-- Testimonial Start -->
+        <div class="container-xxl py-5" id="review">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    
+                    <h1 class="mb-5">Oque Usuarios estão falando</h1>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img/testimonial-1.jpg"
+                                style="width: 85px; height: 85px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">Maria Oliveira</h5>
+                                <p class="mb-1">lançamentos</p>
+                                <div>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">Desde que começamos a usar este gateway de pagamentos, nossa taxa de conversão aumentou em 20%! A integração foi super simples e nossos clientes adoram a facilidade de pagamento</p>
+                    </div>
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img/testimonial-2.jpg"
+                                style="width: 85px; height: 85px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">João Silva</h5>
+                                <p class="mb-1">Dropshiping</p>
+                                <div>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">" Com o aplicativo móvel, posso monitorar todos os pagamentos em tempo real</p>
+                    </div>
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img/testimonial-3.jpg"
+                                style="width: 85px; height: 85px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">Carlos Mendes</h5>
+                                <p class="mb-1">Apifiado</p>
+                                <div>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    
+                                    <small class="fa fa-star text-warning"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">Precisávamos de uma solução de pagamento confiável para nossa loja online, e encontramos a melhor opção. </p>
+                    </div>
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/img/testimonial-4.jpg"
+                                style="width: 85px; height: 85px;">
+                            <div class="ms-4">
+                                <h5 class="mb-1">Ana Paula Souza</h5>
+                                <p class="mb-1">InterEmpresas</p>
+                                <div>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                    <small class="fa fa-star text-warning"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">Receber pagamentos de colaboradores internacionais sempre foi um desafio, mas com este gateway, tudo ficou muito mais simples.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+        <!-- Contact Start -->
+        <div class="container-xxl py-5" id="contact">
+            <div class="container py-5 px-lg-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-primary-gradient fw-medium">Contact Us</h5>
+                    <h1 class="mb-5">Fale Connosco</h1>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+                        <div class="wow fadeInUp" data-wow-delay="0.3s">
+                            <p class="text-center mb-4">Tem alguma dúvida ou precisa de ajuda? Nossa equipe está pronta para atender você! Entre em contato conosco através dos seguintes canais: 
+                               
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <label for="name">Seu Nome</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Your Email">
+                                            <label for="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                            <label for="subject">Assunto</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a message here"
+                                                id="message" style="height: 150px"></textarea>
+                                            <label for="message">Detalhes</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-primary-gradient rounded-pill py-3 px-5"
+                                            type="submit">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+
+
+        <!-- Footer Start -->
+        <div class=" container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class=" col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Endereço</h4>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>1114, Matola, Maputo, MZ</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>+258 86 521 8679</p>
+                        <p><i class="fa fa-envelope me-3"></i>comercial@voidpay.online</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="fimg col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Lewrwers</h4>
+                        <img class="img" src="https://voidabinerjr.github.io/VOIDpayServerMVP2/views/formulario/assets/void.png" alt="">
+                        <img class="img1" src="https://voidabinerjr.github.io/VOIDpayServerMVP2/views/formulario/assets/cards.png" alt="">
+                        <img class="img" src="https://voidabinerjr.github.io/VOIDpayServerMVP2/views/formulario/assets/ssl.png" alt="">
+                        <img class="img" src="https://voidabinerjr.github.io/VOIDpayServerMVP2/views/formulario/assets/psafe.png" alt="">
+                   </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Links úteis</h4>
+                        <a class="btn btn-link" href="">Sobre nós</a>
+                        <a class="btn btn-link" href="">Suporte</a>
+                        <a class="btn btn-link" href="">Política de Privacidade</a>
+                        <a class="btn btn-link" href="">Termos de Serviço</a>
+                        <a class="btn btn-link" href="">Contato</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h4 class="text-white mb-4">Newsletter</h4>
+                        <p>Fique po dentro de atualizações</p>
+                        <div class="position-relative w-100 mt-3">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text"
+                                placeholder=" Email" style="height: 48px;">
+                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i
+                                    class="fa fa-paper-plane text-primary-gradient fs-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">VOIDpay</a>, All Right Reserved.
+
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a class="border-bottom" href="https://www.voiddevs.online">VOID devs/a>
+                            </br>
+                            Distributed By <a class="border-bottom" href="https://themewagon.com"
+                                target="_blank">ThemeWagon</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Ajuda</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up text-white"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/wow/wow.min.js"></script>
+    <script src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/easing/easing.min.js"></script>
+    <script src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/waypoints/waypoints.min.js"></script>
+    <script src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/counterup/counterup.min.js"></script>
+    <script
+        src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="https://voidabinerjr.github.io/VOIDpayWebMVP2/public/Mainpage/js/main.js"></script>
+
+
+    <script>
+        function starts() {
+            const numStars = 30;
+            const container = document.body;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's'; // Duração aleatória
+                container.appendChild(star);
+            }
+        }
+        starts()
+    </script>
+
+</body>
+
+</html>
