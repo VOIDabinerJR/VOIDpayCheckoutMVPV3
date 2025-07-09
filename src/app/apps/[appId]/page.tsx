@@ -70,7 +70,9 @@ export default async function Page({ params }: PageProps) {
   const [showSecret, setShowSecret] = useState(false);
 
   return (
+
     <KBar>
+
       <SidebarProvider defaultOpen={defaultOpen}>
         <AppSidebar />
         <SidebarInset>

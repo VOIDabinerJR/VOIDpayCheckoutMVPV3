@@ -7,6 +7,8 @@ export const metadata = {
   title: 'Dashboard : App Details'
 };
 
+
+
 type PageProps = { params: Promise<{ appId: string }> };
 
 export default async function Page(props: PageProps) {
