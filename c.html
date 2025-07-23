@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Integração Corrigida - PayPal/Braintree</title>
+    <script src="https://js.braintreegateway.com/web/3.85.2/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.85.2/js/hosted-fields.min.js"></script>
+    <style>
+        .hosted-field {
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        #cardForm {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="cardForm">
+        <div id="card-number" class="hosted-field"></div>
+        <div id="expiration-date" class="hosted-field"></div>
+        <div id="cvv" class="hosted-field"></div>
+        <button type="submit" id="submit-button">Pagar</button>
+    </form>
+
+    <script>
+        // Primeiro passo: Obter o token de autorização
+        fetch('/api/braintree/client-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao obter token de autorização');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data.clientToken) {
+                throw new Error('Token de cliente não retornado');
+            }
+            
+            // Segundo passo: Criar instância do cliente Braintree
+            return braintree.client.create({
+                authorization: data.clientToken // Token obtido do servidor
+            });
+        })
+        .then(clientInstance => {
+            // Terceiro passo: Criar HostedFields
+            return braintree.hostedFields.create({
+                client: clientInstance,
+                styles: {
+                    'input': {
+                        'font-size': '16px',
+                        'color': '#333'
+                    },
+                    '.valid': {
+                        'color': 'green'
+                    },
+                    '.invalid': {
+                        'color': 'red'
+                    }
+                },
+                fields: {
+                    number: {
+                        selector: '#card-number',
+                        placeholder: '4111 1111 1111 1111'
+                    },
+                    expirationDate: {
+                        selector: '#expiration-date',
+                        placeholder: '10/25'
+                    },
+                    cvv: {
+                        selector: '#cvv',
+                        placeholder: '123'
+                    }
+                }
+            });
+        })
+        .then(hostedFieldsInstance => {
+            // Configurar submissão do formulário
+            document.getElementById('cardForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                hostedFieldsInstance.tokenize(function(err, payload) {
+                    if (err) {
+                        console.error('Erro ao tokenizar:', err);
+                        alert('Erro ao processar cartão: ' + err.message);
+                        return;
+                    }
+                    
+                    // Enviar o token não sensível para seu servidor
+                    fetch('/api/process-payment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ paymentMethodNonce: payload.nonce })
+                    })
+                    .then(/* processar resposta */);
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Erro na inicialização:', error);
+            alert('Erro ao carregar o sistema de pagamento: ' + error.message);
+        });
+    </script>
+</body>
+</html>

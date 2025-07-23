@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solução PayPal HostedFields</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://www.paypal.com/sdk/js?client-id=Ae6opfrt9hy32F1d5DP1LwX78WwECiejzXj6Cotwy8atfocuHvbkeIpaIVzIYiaealSWGcUWaWvp9PDF&currency=USD&components=hosted-fields"></script>
+     <style>
+        .paypal-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .hosted-field-container {
+            margin-bottom: 15px;
+        }
+        #card-number-container, 
+        #expiration-date-container, 
+        #cvv-container {
+            min-height: 40px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            background: white;
+        }
+        #submit-button {
+            background-color: #0070ba;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="paypal-container">
+        <h2>Pagamento seguro</h2>
+        <form id="cardForm">
+            <div class="hosted-field-container">
+                <label>Número do cartão</label>
+                <div id="card-number-container"></div>
+            </div>
+            
+            <div style="display: flex; gap: 15px;">
+                <div class="hosted-field-container" style="flex: 1;">
+                    <label>Validade (MM/AA)</label>
+                    <div id="expiration-date-container"></div>
+                </div>
+                
+                <div class="hosted-field-container" style="flex: 1;">
+                    <label>CVV</label>
+                    <div id="cvv-container"></div>
+                </div>
+            </div>
+            
+            <button type="submit" id="submit-button">Pagar agora</button>
+        </form>
+    </div>
+    
+    <div id="loading-overlay">
+        <div style="background: white; padding: 20px; border-radius: 8px;">
+            Processando pagamento...
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verifica se o PayPal SDK foi carregado
+            if (typeof paypal === 'undefined') {
+                console.error('PayPal SDK não carregado');
+                alert('Erro ao carregar o sistema de pagamento. Recarregue a página.');
+                return;
+            }
+
+            let hostedFields;
+            const maxRetries = 3;
+            let retryCount = 0;
+            
+            function initializePayPal() {
+                try {
+                    paypal.HostedFields.render({
+                        createOrder: function() {
+                            return fetch('/api/create-order', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    amount: '100.00',
+                                    currency: 'BRL'
+                                })
+                            }).then(function(res) {
+                                if (!res.ok) throw new Error('Erro ao criar ordem');
+                                return res.json();
+                            }).then(function(data) {
+                                if (!data.orderID) throw new Error('OrderID não encontrado');
+                                return data.orderID;
+                            });
+                        },
+                        styles: {
+                            'input': {
+                                'font-size': '16px',
+                                'color': '#333'
+                            },
+                            '.valid': {
+                                'color': 'green'
+                            },
+                            '.invalid': {
+                                'color': 'red'
+                            }
+                        },
+                        fields: {
+                            number: {
+                                selector: '#card-number-container',
+                                placeholder: '4111 1111 1111 1111'
+                            },
+                            expirationDate: {
+                                selector: '#expiration-date-container',
+                                placeholder: 'MM/AA'
+                            },
+                            cvv: {
+                                selector: '#cvv-container',
+                                placeholder: '123'
+                            }
+                        }
+                    }).then(function(hf) {
+                        hostedFields = hf;
+                        console.log('HostedFields carregado com sucesso');
+                        
+                        document.getElementById('cardForm').addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            processPayment();
+                        });
+                    }).catch(function(err) {
+                        console.error('Erro ao renderizar HostedFields:', err);
+                        
+                        if (retryCount < maxRetries) {
+                            retryCount++;
+                            console.log(`Tentativa ${retryCount} de ${maxRetries}`);
+                            setTimeout(initializePayPal, 1000 * retryCount);
+                        } else {
+                            alert('Não foi possível carregar o formulário de pagamento. Recarregue a página.');
+                        }
+                    });
+                } catch (error) {
+                    console.error('Erro na inicialização:', error);
+                }
+            }
+            
+            function processPayment() {
+                const submitButton = document.getElementById('submit-button');
+                const loadingOverlay = document.getElementById('loading-overlay');
+                
+                submitButton.disabled = true;
+                loadingOverlay.style.display = 'flex';
+                
+                hostedFields.submit({
+                    cardholderName: 'Nome do Titular',
+                    billingAddress: {
+                        postalCode: '12345'
+                    }
+                }).then(function(orderData) {
+                    console.log('Pagamento bem-sucedido:', orderData);
+                    alert('Pagamento realizado com sucesso!');
+                }).catch(function(err) {
+                    console.error('Erro no pagamento:', err);
+                    alert('Erro ao processar pagamento: ' + 
+                        (err.message || 'Tente novamente ou use outro cartão'));
+                }).finally(function() {
+                    submitButton.disabled = false;
+                    loadingOverlay.style.display = 'none';
+                });
+            }
+            
+            // Inicializa o PayPal
+            initializePayPal();
+        });
+    </script>
+</body>
+</html>

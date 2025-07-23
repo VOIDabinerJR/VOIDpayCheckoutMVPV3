@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento Seguro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    h1 {
+      color: #003087;
+      margin-bottom: 30px;
+    }
+    
+    .card-form {
+      margin-top: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .paypal-input {
+      height: 40px;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    
+    #pay-button {
+      margin-top: 25px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0070ba;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    #pay-button:hover {
+      background-color: #005a9e;
+    }
+    
+    #pay-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    
+    .error-message {
+      color: #d14343;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f8d7da;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .success-message {
+      color: #155724;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #d4edda;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .retry-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .retry-button:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pagamento com Cartão</h1>
+    
+    <div id="payment-form">
+      <div class="card-form">
+        <div class="form-group">
+          <label for="card-number">Número do Cartão</label>
+          <div id="card-number" class="paypal-input"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="expiration-date">Data de Validade (MM/AA)</label>
+          <div id="expiration-date" class="paypal-input"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">Código de Segurança (CVV)</label>
+          <div id="cvv" class="paypal-input"></div>
+        </div>
+
+        <button id="pay-button">
+          <span id="button-text">Pagar Agora</span>
+        </button>
+      </div>
+      
+      <div id="error-message" class="error-message"></div>
+      <div id="success-message" class="success-message"></div>
+      
+      <button id="retry-button" class="retry-button" style="display: none;">
+        Tentar Novamente
+      </button>
+    </div>
+  </div>
+
+  <!-- SDK PayPal com Hosted Fields -->
+  <script src="https://www.paypal.com/sdk/js?client-id=Ae6opfrt9hy32F1d5DP1LwX78WwECiejzXj6Cotwy8atfocuHvbkeIpaIVzIYiaealSWGcUWaWvp9PDF&currency=USD&components=hosted-fields&currency=BRL"></script>
+
+  <script>
+    // Elementos da interface
+    const payButton = document.getElementById('pay-button');
+    const buttonText = document.getElementById('button-text');
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
+    const retryButton = document.getElementById('retry-button');
+    const paymentForm = document.getElementById('payment-form');
+    
+    // Função para mostrar mensagens
+    function showMessage(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+    }
+    
+    // Função para esconder mensagens
+    function hideMessages() {
+      errorMessage.style.display = 'none';
+      successMessage.style.display = 'none';
+    }
+    
+    // Função para habilitar/desabilitar o botão
+    function setLoading(loading) {
+      payButton.disabled = loading;
+      buttonText.innerHTML = loading 
+        ? '<span class="loading"></span> Processando...' 
+        : 'Pagar Agora';
+    }
+    
+    // Função para inicializar os campos de pagamento
+    function initializePayPal() {
+      hideMessages();
+      retryButton.style.display = 'none';
+      setLoading(true);
+      
+      paypal.HostedFields.render({
+        createOrder: () => {
+          // Simulação de criação de pedido - substitua por chamada real à sua API
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve('SIMULATED-ORDER-' + Math.random().toString(36).substr(2, 8).toUpperCase());
+            }, 1000);
+          });
+        },
+        styles: {
+          input: {
+            'font-size': '16px',
+            'font-family': 'Arial, sans-serif',
+            color: '#333'
+          },
+          '.invalid': {
+            color: '#dc3545'
+          },
+          ':focus': {
+            color: '#495057',
+            'border-color': '#80bdff',
+            'box-shadow': '0 0 0 0.2rem rgba(0,123,255,.25)'
+          }
+        },
+        fields: {
+          number: {
+            selector: '#card-number',
+            placeholder: '4111 1111 1111 1111'
+          },
+          cvv: {
+            selector: '#cvv',
+            placeholder: '123'
+          },
+          expirationDate: {
+            selector: '#expiration-date',
+            placeholder: 'MM/AA'
+          }
+        }
+      }).then((cardFields) => {
+        setLoading(false);
+        
+        payButton.addEventListener('click', () => {
+          hideMessages();
+          setLoading(true);
+          
+          cardFields.submit({
+            // Adicione detalhes adicionais se necessário
+            cardholderName: 'Nome do Titular', // Obtenha isso de um campo de formulário
+            billingAddress: {
+              postalCode: '00000000' // Obtenha isso de um campo de formulário
+            }
+          }).then((payload) => {
+            console.log('Pagamento aprovado:', payload);
+            showMessage(successMessage, 'Pagamento aprovado com sucesso!');
+            payButton.style.display = 'none';
+            retryButton.style.display = 'block';
+          }).catch((err) => {
+            console.error('Erro no pagamento:', err);
+            showMessage(errorMessage, 'Erro ao processar pagamento: ' + err.message);
+            setLoading(false);
+          });
+        });
+      }).catch((err) => {
+        console.error('Erro ao carregar campos de pagamento:', err);
+        showMessage(errorMessage, 'Não foi possível carregar o sistema de pagamentos. Recarregue a página.');
+        payButton.style.display = 'none';
+        retryButton.style.display = 'block';
+        setLoading(false);
+      });
+    }
+    
+    // Botão para tentar novamente
+    retryButton.addEventListener('click', () => {
+      window.location.reload();
+    });
+    
+    // Inicializa o PayPal quando a página carrega
+    window.addEventListener('DOMContentLoaded', initializePayPal);
+  </script>
+</body>
+</html>

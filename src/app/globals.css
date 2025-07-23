@@ -176,12 +176,15 @@
 @keyframes twinkle {
   0% {
     opacity: 0.5;
+     transform: scale(0.8);
   }
   50% {
     opacity: 1;
+     transform: scale(0.8);
   }
   100% {
     opacity: 0.5;
+     transform: scale(1.2);
   }
 }
 
@@ -195,4 +198,95 @@
   100% {
     transform: translateY(0);
   }
+}
+
+
+
+/* Adicione no seu arquivo global.css ou no módulo CSS do componente */
+.transparent-card {
+  background-color: rgba(15, 15, 15, 0.85) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.transparent-card .card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.transparent-input {
+  background-color: rgba(30, 30, 30, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+}
+
+.transparent-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Estilos para os cards pretos sólidos */
+.solid-black-card {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+}
+
+.solid-black-card .card-header {
+  border-bottom: 1px solid #333 !important;
+}
+
+/* Estilos para inputs */
+.dark-input {
+  background-color: #111 !important;
+  border: 1px solid #333 !important;
+  color: white !important;
+}
+
+.dark-input:focus {
+  border-color: #555 !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-input::placeholder {
+  color: #666 !important;
+}
+
+/* Textos */
+.white-text {
+  color: white !important;
+}
+
+.muted-white-text {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Efeito de vidro mais transparente */
+.glass-card {
+  background-color: rgba(10, 10, 10, 0.6) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.glass-card .card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-input {
+  background-color: rgba(20, 20, 20, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  backdrop-filter: blur(5px);
+}
+
+.glass-input:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Ajuste de cores para melhor contraste */
+.text-muted-transparent {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-strong-transparent {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
