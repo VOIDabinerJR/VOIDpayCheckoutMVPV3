@@ -28,7 +28,7 @@ export default function CustomCheckout() {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<'card' | 'wallet' | 'paypal' | 'qrcode' | null>(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<'card' | 'mobileWallet' | 'paypal' | 'qrcode' | null>(null);
   // const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('card');
 
 
@@ -54,7 +54,7 @@ export default function CustomCheckout() {
     };
 
     // Aqui você enviaria o payload para o backend
- if (selectedPaymentMethod === 'wallet') {
+ if (selectedPaymentMethod === 'mobileWallet') {
     try {
       // Simular envio
       const res = await fetch('/api/checkout', {
@@ -303,7 +303,7 @@ export default function CustomCheckout() {
             <CardHeader><CardTitle>Método de Pagamento</CardTitle></CardHeader>
             <CardContent className="space-y-4">
               <div className="flex gap-2">
-                {['card', 'wallet', 'paypal', 'qrcode'].map(method => (
+                {['card', 'mobileWallet', 'paypal', 'qrcode'].map(method => (
                   <Button
                     key={method}
                     variant="outline"
@@ -311,10 +311,10 @@ export default function CustomCheckout() {
                       ? 'bg-muted shadow-inner ring-2 ring-muted-foreground'
                       : ''
                       }`}
-                    onClick={() => setSelectedPaymentMethod(method as 'card' | 'wallet' | 'paypal' | 'qrcode')}
+                    onClick={() => setSelectedPaymentMethod(method as 'card' | 'mobileWallet' | 'paypal' | 'qrcode')}
                   >
                     {method === 'card' && 'Cartão'}
-                    {method === 'wallet' && 'Carteira'}
+                    {method === 'mobileWallet' && 'Carteira'}
                     {method === 'paypal' && 'PayPal'}
                     {method === 'qrcode' && 'QR Code'}
                   </Button>
@@ -333,7 +333,7 @@ export default function CustomCheckout() {
                 </div>
               )}
 
-              {selectedPaymentMethod === 'wallet' && (
+              {selectedPaymentMethod === 'mobileWallet' && (
                 <div className="mt-4">Pagamento via Carteira selecionado.</div>
               )}
 

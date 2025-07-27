@@ -65,6 +65,9 @@ export const PaymentMethods = ({
                     }
                   );
 
+
+                  
+
                   if (!res.ok) {
                     throw new Error('Falha ao criar ordem PayPal');
                   }
@@ -142,7 +145,7 @@ export const PaymentMethods = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
-          {['card', 'wallet', 'paypal', 'qrcode'].map((method) => (
+          {['card', 'mobileWallet', 'paypal', 'qrcode'].map((method) => (
             <Button
               key={method}
               variant="outline"
@@ -157,7 +160,7 @@ export const PaymentMethods = ({
               }}
             >
               {method === 'card' && 'Cartão'}
-              {method === 'wallet' && 'Carteira'}
+              {method === 'mobileWallet' && 'Carteira'}
               {method === 'paypal' && 'PayPal'}
               {method === 'qrcode' && 'QR Code'}
             </Button>
@@ -175,15 +178,18 @@ export const PaymentMethods = ({
           </div>
         )}
 
-        {selectedMethod === 'wallet' && (
+        {selectedMethod === 'mobileWallet' && (
           <div className="mt-4 text-muted-transparent">
-            Pagamento via Carteira selecionado.
+            <Label className="text-muted-transparent">Número de Carteira</Label>
+            <br />
+            <Input className="glass-input" placeholder="89 999 9999" />
           </div>
         )}
 
         {selectedMethod === 'paypal' && (
           <div className="mt-4">
             <div id="paypal-button-container" />
+            
             {paypalError && (
               <p className="text-red-400 text-sm mt-2">{paypalError}</p>
             )}

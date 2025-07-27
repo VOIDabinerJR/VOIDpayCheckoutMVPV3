@@ -14,4 +14,4 @@ export type OrderSummaryData = {
   total: number;
 };
 
-export type PaymentMethod = 'card' | 'wallet' | 'paypal' | 'qrcode' | null;
+export type PaymentMethod = 'card' | 'mobileWallet' | 'paypal' | 'qrcode' | null;

@@ -68,7 +68,7 @@ export interface Refund {
     | 'debit_card'
     | 'pix'
     | 'bank_transfer'
-    | 'wallet';
+    | 'mobileWallet';
   reason?: string;
   created_at: string;
   processed_at?: string;
