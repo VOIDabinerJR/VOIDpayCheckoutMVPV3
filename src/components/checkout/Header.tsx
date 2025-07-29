@@ -1,7 +1,7 @@
 // components/checkout/Header.tsx
 'use client';
 import { ShieldCheck } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+
 
 type HeaderProps = {
   storeName: string;

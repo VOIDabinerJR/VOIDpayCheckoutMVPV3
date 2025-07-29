@@ -12,6 +12,8 @@ export type OrderSummaryData = {
   subtotal: number;
   iva: number;
   total: number;
+   orderStatus?: any; 
+  
 };
 
 export type PaymentMethod = 'card' | 'mobileWallet' | 'paypal' | 'qrcode' | null;

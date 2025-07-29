@@ -17,11 +17,9 @@ export default function Providers({
 
   return (
     <>
-      <ActiveThemeProvider initialTheme={activeThemeValue}>
+      <ActiveThemeProvider >
         <ClerkProvider
-          appearance={{
-            baseTheme: resolvedTheme === 'dark' ? dark : undefined
-          }}
+          
         >
           {children}
         </ClerkProvider>

@@ -24,7 +24,7 @@ export const useCheckout = () => {
     subtotal: 0,
     iva: 0,
     total: 0,
-  }); 
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,9 +64,10 @@ export const useCheckout = () => {
 
   const handlePayment = async () => {
     setLoading(true);
-    setError('');
+   setError('Please select a payment method');
 
     const payload = {
+      idempotencyKey: '',
       orderId,
       fullName,
       phone,
@@ -84,9 +85,17 @@ export const useCheckout = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:3001/pay/pay?orderid=316&buttontoken=VOID-04fce89f-0952-4736-8c35-c93c0e503809&channel=shopify', {
+
+
+      const IdempotencyKey = '1asda' ;  //crypto.randomUUID();
+      payload.idempotencyKey = IdempotencyKey;
+
+      const res = await fetch(`http://localhost:3001/pay/pay?orderid=${orderId}&buttontoken=VOID-04fce89f-0952-4736-8c35-c93c0e503809&channel=shopify`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': IdempotencyKey
+        },
         body: JSON.stringify(payload),
       });
 
@@ -134,51 +143,51 @@ export const useCheckout = () => {
 
 
 
-    // if (selectedPaymentMethod === 'mobileWallet') {
-    //   try {
-    //     const res = await fetch('/api/checkout', {
-    //       method: 'POST',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify(payload),
-    //     });
+// if (selectedPaymentMethod === 'mobileWallet') {
+//   try {
+//     const res = await fetch('/api/checkout', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(payload),
+//     });
 
-    //     if (!res.ok) throw new Error('Falha no pagamento');
+//     if (!res.ok) throw new Error('Falha no pagamento');
 
-    //     router.push('/success');
-    //   } catch (err) {
-    //     setError('Erro ao processar pagamento: ' + err);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // }
+//     router.push('/success');
+//   } catch (err) {
+//     setError('Erro ao processar pagamento: ' + err);
+//   } finally {
+//     setLoading(false);
+//   }
+// }
 
-    // if (selectedPaymentMethod === 'paypal') {
-    //   try {
-    //     const res = await fetch(
-    //       'https://my-flask-app-1-4uel.onrender.com/paypal/paypal/create_order',
-    //       {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify({
-    //           token:
-    //             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbW91bnQiOiIxMC4wMCIsImN1cnJlbmN5IjoiVVNEIiwiaWF0IjoxNzUyMDQ4NDQxfQ.qH0OZJIjqAhxI4eTH7hsBg1bV-Hs-fVueuoMHwTRsuw',
-    //           amount: summary.total.toFixed(2),
-    //           currency: 'MZN',
-    //         }),
-    //       }
-    //     );
+// if (selectedPaymentMethod === 'paypal') {
+//   try {
+//     const res = await fetch(
+//       'https://my-flask-app-1-4uel.onrender.com/paypal/paypal/create_order',
+//       {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           token:
+//             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbW91bnQiOiIxMC4wMCIsImN1cnJlbmN5IjoiVVNEIiwiaWF0IjoxNzUyMDQ4NDQxfQ.qH0OZJIjqAhxI4eTH7hsBg1bV-Hs-fVueuoMHwTRsuw',
+//           amount: summary.total.toFixed(2),
+//           currency: 'MZN',
+//         }),
+//       }
+//     );
 
-    //     if (!res.ok) throw new Error('Erro ao criar ordem PayPal');
+//     if (!res.ok) throw new Error('Erro ao criar ordem PayPal');
 
-    //     const data = await res.json();
-    //     let orderId = data.id;
-    //     orderId = '07U98539XY7500501';
-    //     const approvalUrl =
-    //       data.approvalUrl || `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}`;
+//     const data = await res.json();
+//     let orderId = data.id;
+//     orderId = '07U98539XY7500501';
+//     const approvalUrl =
+//       data.approvalUrl || `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}`;
 
-    //     window.location.href = approvalUrl;
-    //   } catch (err) {
-    //     setError('Erro ao processar pagamento PayPal: ' + err);
-    //     setLoading(false);
-    //   }
-    // }
+//     window.location.href = approvalUrl;
+//   } catch (err) {
+//     setError('Erro ao processar pagamento PayPal: ' + err);
+//     setLoading(false);
+//   }
+// }

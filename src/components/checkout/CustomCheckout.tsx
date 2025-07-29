@@ -11,10 +11,13 @@ import { useCheckout } from './useCheckout';
 import { OrderItem, OrderSummaryData } from './types';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Alert } from './Alert';
 
 type CustomCheckoutProps = {
   storeName?: string;
 };
+
+type OrderStatus = 'pending' | 'processing' | 'completed' | 'cancelled';
 
 export const CustomCheckout = ({ storeName }: CustomCheckoutProps) => {
 
@@ -24,10 +27,15 @@ export const CustomCheckout = ({ storeName }: CustomCheckoutProps) => {
     tax: 0,
     subtotal: 0,
     iva: 0,
-    total: 0
+    total: 0,
+    orderStatus: 'pending',
+
   });
+  // const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [error, setError] = useState('');
 
+  const [orderStatus, setOrderStatus] = useState<OrderStatus>('pending');
 
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderid');
@@ -40,13 +48,28 @@ export const CustomCheckout = ({ storeName }: CustomCheckoutProps) => {
 
 
   useEffect(() => {
+    if (!orderId) {
+      setError('ID do pedido não encontrado');
+
+      return;
+    }
     const fetchOrderData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3001/pay/pay/pay?orderid=${orderId}&buttontoken=${buttonToken}&channel=${channel}`
+          `http://localhost:3001/pay/pay/pay?orderid=${orderId}&buttontoken=${buttonToken}&channel=${channel}`,
+
         );
 
+        if (!res.ok) {
+          const errorData = await res.json().catch(() => ({}));
+          throw new Error(errorData.message || 'Failed to fetch order data');
+        }
         const data = await res.json();
+
+        if (data.orderStatus === 'completed') {
+          setOrderStatus('completed');
+
+        }
 
 
         setOrderItems(
@@ -59,23 +82,45 @@ export const CustomCheckout = ({ storeName }: CustomCheckoutProps) => {
         );
 
 
+
         setSummary({
           tax: Number(data.ivaTax),
           subtotal: Number(data.subtotal),
           iva: data.iva,
           total: Number(data.total),
+          orderStatus: data.orders
         });
 
+        setOrderStatus(data.orderStatus);
+
       } catch (error) {
-        console.error('Error fetching order:', error);
-        setError('Falha ao carregar detalhes do pedido');
+        console.error('Erro ao buscar pedido:', error);
+        setError(error instanceof Error ? error.message : 'Erro desconhecido');
       }
     };
 
-    if (orderId) fetchOrderData();
-  }, [orderId]);
+    fetchOrderData();
+  }, [orderId, buttonToken, channel]);
 
 
+  const getStatusMessage = () => {
+    if (orderStatus === 'completed') {
+      return {
+        message: 'Este pedido já foi concluído com sucesso!',
+        type: 'success' as const
+      };
+    }
+
+    if (orderStatus === 'cancelled') {
+      return {
+        message: 'Este pedido foi cancelado.',
+        type: 'error' as const
+      };
+    }
+  };
+
+  const status = getStatusMessage();
+  const isOrderCompleted = orderStatus === 'completed';
 
 
   const {
@@ -94,17 +139,22 @@ export const CustomCheckout = ({ storeName }: CustomCheckoutProps) => {
     selectedPaymentMethod,
     setSelectedPaymentMethod,
     loading,
-
     handlePayment,
     handlePaypalSuccess,
   } = useCheckout();
-
 
 
   return (
     <div className="max-w-7xl mx-auto p-4 space-y-6 relative">
       <StarsBackground />
       <Header storeName={storeName ?? ''} />
+
+      {status && (
+        <Alert type=
+          {status.type}>
+          {status.message}
+        </Alert>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
         <div className="space-y-6">
